@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+li{ list-style:none;}
+img{ border:none; vertical-align:top;}
+a{ text-decoration:none; color:inherit;}
+.clear{zoom:1;}
+.clear:after{ content:""; display:block; clear:both;}
+
+body{ font-size:14px; font-family: Microsoft YaHei,Arial,Verdana,Sans-serif; background:#FFF; color: #252525;}
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../fonts/icomoon.eot?gnnhfe');
+    src:    url('../fonts/icomoon.eot?gnnhfe#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?gnnhfe') format('truetype'),
+        url('../fonts/icomoon.woff?gnnhfe') format('woff'),
+        url('../fonts/icomoon.svg?gnnhfe#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-youjiantou:before {
+    content: "\e91e";
+}
+.icon-moni:before {
+    content: "\e916";
+}
+.icon-mingxi:before {
+    content: "\e915";
+}
+
+.head{ width:100%; height:0.5rem; background:#da2f35; position:fixed; top:0; z-index:100;}
+.head h3{ width:100%; font-weight:400; font-size:0.16rem; color:#FFF; text-align:center; line-height:0.5rem;}
+.head a{ width:0.066rem; height:0.12rem; display:block; float:left; position:absolute; left:0.18rem; top:0.17rem; font-size:0.16rem; line-height:0.16rem; color:#FFF;}
+
+.main{ margin-top: 0.5rem; padding-bottom: 0.5rem;}
+
+.title img{ width: 100%;}
+
+.conDiv{ margin-top: 0.2rem;}
+.content .conTitle{ width: 100%; color: #da2f35; line-height: 0.3rem; position: relative;}
+.content .conTitle span{ display: inline-block;  text-indent: 0.18rem;}
+.content .conTitle .red{ width: 4px; height: 0.18rem; background: #da2f35; position: absolute; left: 0; top: 0.05rem; border-radius: 2px;}
+
+.content p{ line-height: 0.25rem; width: 90%; margin: 0 auto;}
+.content .prompt{ width: 90%; margin: 0 auto; line-height: 0.25rem; background: #ececec; padding: 0.07rem; border-radius: 5px; margin-top: 0.1rem;}
+
+.p2{ padding-bottom: 0.1rem;}
+
+
+

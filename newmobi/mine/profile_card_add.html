@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>添加银行卡</title>
+
+    <meta name="keywords">
+    <meta name="description" content="平台首创操盘人和投资人线上合作交易模式（品种有股指期货、黄金、白银、原油），让有能力的操盘人提供交易买卖指令，有资金的投资人提供交易资金，双方按约定共享收益共担风险。">
+    
+    <link rel="stylesheet" href="../content/assets/css/page/mine/merge-profile.css?_=20151031001">
+
+    
+    
+
+    <script type="text/javascript">
+        var __baseDir = 'http://'+window.location.host+'/content/';
+    </script>
+    <!--tongdun-->
+    <script type="text/javascript">
+       
+        (function () {
+            //检测DNS劫持
+            if (window.self == window.top) {
+                document.documentElement.style.display = 'block';
+            } else {
+                window.top.location = window.self.location;
+            }
+        })();
+    </script>
+    <!--tongdun end-->
+</head>
+<body>
+    
+
+
+
+<div id="doc" class="doc page-mine nofooter" data-url-save="profile_card_add">
+    <!-- 头部 -->
+    <header class="page-header">
+        <div class="content">
+            <h3>添加银行卡</h3>
+            <div class="left">
+                <a href="javascript:window.history.back()" class="iconfont go-back icon-xiangzuojiantou"></a>
+            </div>
+            <div class="right"></div>
+        </div>
+    </header>
+
+    <!-- 内容 -->
+    <section class="page-main main-mine-profile mine-profile-card-add">
+        <div class="content">
+                <div class="text-stress tips">为确保资金安全，只能添加“*文裕”的银行卡！</div>
+
+            <ul class="mod-list">
+                    <li>
+                        <label>
+                            <span>开户名</span>
+                            <input type="text" class="input" value="*文裕" readonly="readonly">
+                        </label>
+                    </li>
+                <li data-source="{data:['工商银行','建设银行','农业银行','招商银行','中国银行','交通银行','邮政储蓄','民生银行','浦发银行','兴业银行','华夏银行','光大银行','广发银行','中信银行','平安银行','农商银行']}">
+                    <label class="options choose-bank">
+                        <span>开户银行</span>
+                        <span class="text-lesser title">请选择银行</span>
+                        <span class="iconfont right arrow-right icon-xiangyoujiantou"></span>
+                    </label>
+                </li>
+                <li>
+                    <label class="options choose-province">
+                        <span>开户所在省</span>
+                        <span class="text-lesser title">请选择省</span>
+                        <span class="iconfont right arrow-right icon-xiangyoujiantou"></span>
+                    </label>
+                </li>
+                <li>
+                    <label class="options choose-city">
+                        <span>开户所在市</span>
+                        <span class="text-lesser title">请选择市</span>
+                        <span class="iconfont right arrow-right icon-xiangyoujiantou"></span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span>开户支行</span>
+                        <input name="subbranch" type="text" class="input subbranch" maxlength="50">
+                    </label>
+                </li>
+            </ul>
+
+            <ul class="mod-list">
+                <li>
+                    <label>
+                        <span>银行卡号</span>
+                        <input name="cardNumber" type="tel" class="input cardNumber" maxlength="20" placeholder="请输入银行卡号">
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span>确认卡号</span>
+                        <input name="cardNumberCfm" type="tel" class="input cardNumberCfm" maxlength="20" placeholder="请再次确认银行卡号">
+                    </label>
+                </li>
+            </ul>
+
+            <div class="action">
+                   <a href="javascript:void(0)" class="button button-stress">确 定</a>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+    <script src="../content/assets/lib/base/1.0/lib.js?v=123434324234324" id="seajsnode"></script>
+    <script src="../content/config/app.js?_=20151030004"></script>
+    
+    <script src="../content/assets/js/biz/page-mine-merge.js?_=201511190002"></script>
+    <script>seajs.use("page/mine/done", function (m) { m && m.init && m.init(); });</script>
+
+</body>
+</html>

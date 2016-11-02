@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0" />
+    <title>金币商城 - 我的兑换</title>
+
+    <meta name="keywords" content="股指期货,期指,黄金,白银,沪深300,中证500,上证50">
+
+    <link rel="stylesheet" href="/content/assets/css/page/mall/exchange.css?_=201610330">
+    
+    <script>
+		document.getElementsByTagName('html')[0].style.fontSize = '100px'; 
+	</script>
+    
+    <script src="/content/assets/js/biz/jquery-1.12.1.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- 头部 -->
+<header class="head" id="head">
+	 <a href="/mall/mall.html" class="icon-youjiantou"></a>
+    <h3>我的兑换</h3>
+</header>
+<!-- 内容 -->
+<section class="main">
+    <div class="None">暂无兑换记录</div>
+    <ul class="content">
+        <!--<li class="clear">
+            <div class="left">
+                <img src="imgs/11.jpg">
+            </div>  
+            <div class="right">
+                <p class="p1">iphone 6S 16G</p>
+                <p class="p2"><span class="icon-icon_coin"></span>480000</p>
+                <p class="p3">2016.9.12 &nbsp;06:00<span class="show">兑换中</span></p>
+            </div>
+        </li>
+        <li class="clear">
+            <div class="left">
+                <img src="imgs/11.jpg">
+            </div>  
+            <div class="right">
+                <p class="p1">iphone 6S 16G</p>
+                <p class="p2"><span class="icon-icon_coin"></span>480000</p>
+                <p class="p3">2016.9.12 &nbsp;06:00<span>兑换成功</span></p>
+            </div>
+        </li>
+        <li class="clear">
+            <div class="left">
+                <img src="imgs/11.jpg">
+            </div>  
+            <div class="right">
+                <p class="p1">iphone 6S 16G</p>
+                <p class="p2"><span class="icon-icon_coin"></span>480000</p>
+                <p class="p3">2016.9.12 &nbsp;06:00<span>兑换失败</span></p>
+            </div>
+        </li>-->
+    </ul>
+    
+    <div class="most">
+        <div>加载更多</div>
+    </div>
+</section>
+
+
+<div id="alert1">
+	<div class="input">
+        <p></p>
+        <div class="btn clear">
+            <div class="btnL">确定</div>
+            <div class="btnR">取消</div>
+    	</div>
+    </div>
+</div>
+
+<div id="alert2">
+	<div class="input">
+        <p>您已在其他设备登录请确认</p>
+        <div class="btn clear">
+            <a class="btnL" href="/user/login.html">确定</a>
+    	</div>
+    </div>
+</div>
+<script src="../content/assets/js/biz/nohead.js"></script>
+<script>
+    
+    var $main = $('.main'),
+    $MostF = $('.most'),
+    $Most = $MostF.find('div'),
+    $content = $('.content'),
+    num = 1;
+    
+    $Most.on('click',function(){
+        num++;
+        toMost(num);
+    });
+    
+    toMost()
+    
+    function toMost(p){
+        $.ajax({
+            url: '/user/shopping/findExchangeRecord.do',
+            data: {
+                offset : p?p:0,
+                size : 20
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data){
+                
+                if(data.code == 200){
+                    if(data.data.length < 20){
+                        $MostF.hide();
+                    }
+                    for(var i=0;i<data.data.length;i++){
+                        var str = '<li class="clear" thisId="'+data.data[i].goodsId+'"><div class="left"><img src="'+data.data[i].goodsImage+'"></div><div class="right"><p class="p1">'+data.data[i].goodsName+'</p><p class="p2"><span class="icon-icon_coin"></span>'+data.data[i].goodsPrice+'</p><p class="p3">'+data.data[i].createTime+'';
+                        var str1 = '';
+                        switch(data.data[i].status){
+                            case 0:
+                                str1 = str + '<span class="show">兑换中</span></p></div></li>'; 
+                            break;
+                            case 1:
+                               str1 = str + '<span>兑换成功</span></p></div></li>'; 
+                            break;
+                            case 2:
+                                 str1 = str + '<span>兑换失败</span></p></div></li>';
+                            break;
+                        }
+                        
+                        var $li = $(str1);  //创建li
+                        $content.append($li);
+                        
+                        $li.on('click',function(){
+                            window.location.href = '/mall/mall_details.html?id='+$(this).attr('thisid');
+                        });
+                    }
+                }
+                else if(data.code == 503){
+                     $('#alert2').show();
+                }
+            }
+        });
+    }
+    
+    
+    function mask(str,fn){
+        var $mask = $('#alert1');
+        var $text = $mask.find('p');
+        var $sure = $mask.find('.btnL');
+        var $nosure = $mask.find('.btnR');
+        
+        $text.html(str)
+        
+        $mask.show();
+        
+        $sure.on('click',function(){
+            fn();
+            $mask.hide();
+        });
+        
+        $nosure.on('click',function(){
+            $mask.hide();
+            window.location.href = '/index.html'
+        });
+        
+    }
+    
+</script>
+
+</body>
+</html>

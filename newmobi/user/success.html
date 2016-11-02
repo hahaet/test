@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0" />
+    <title>注册成功</title>
+    <meta name="keywords" content="注册账户">
+    <meta name="description" content="平台首创操盘人和投资人线上合作交易模式（品种有股指期货、黄金、白银、原油），让有能力的操盘人提供交易买卖指令，有资金的投资人提供交易资金，双方按约定共享收益共担风险。">
+    
+    <script>
+		document.getElementsByTagName('html')[0].style.fontSize = '100px'; 
+	 </script>
+    
+    <style>
+        *{ margin:0; padding:0;}
+        li{ list-style:none;}
+        img{ border:none; vertical-align:top;}
+        a{ text-decoration:none; color:inherit;}
+        .clear{zoom:1;}
+        .clear:after{ content:""; display:block; clear:both;}
+
+        body{ font-size:14px; font-family: Microsoft YaHei,Arial,Verdana,Sans-serif; background:#EDF0F5; }
+        
+        @font-face {
+            font-family: 'icomoon';
+            src:    url('../content/assets/css/page/fonts/icomoon.eot?gnnhfe');
+            src:    url('../content/assets/css/page/fonts/icomoon.eot?gnnhfe#iefix') format('embedded-opentype'),
+                url('../content/assets/css/page/fonts/icomoon.ttf?gnnhfe') format('truetype'),
+                url('../content/assets/css/page/fonts/icomoon.woff?gnnhfe') format('woff'),
+                url('../content/assets/css/page/fonts/icomoon.svg?gnnhfe#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        [class^="icon-"], [class*=" icon-"] {
+            /* use !important to prevent issues with browser extensions that change fonts */
+            font-family: 'icomoon' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .icon-youjiantou:before {
+            content: "\e91e";
+        }
+        
+        .head{ width:100%; height:0.5rem; background:#da2f35; position:fixed; top:0; z-index:100;}
+        .head h3{ width:100%; font-weight:400; font-size:0.15rem; color:#FFF; text-align:center; line-height:0.5rem;}
+        .head a{ width:0.066rem; height:0.12rem; display:block; float:left; position:absolute; left:0.18rem; top:0.17rem; font-size:0.16rem; line-height:0.16rem; color:#FFF;}
+        
+        .success{ width: 100%; height: 18%; background: #FFF; text-align: center; position: relative; margin-top: 0.5rem;}
+        .success img{ position: absolute; left: 50%; top: 24%; height: 0.3rem; margin-left: -30%;}
+        .success p{ position: absolute; font-size: 0.22rem; line-height: 0.4rem; left: 50%; top: 20%; margin-left: -25%;}
+        
+        .btn{ width: 100%; height: 10%; background:#FFF; padding-bottom: 1%;  margin-top: -.25rem; position: relative; z-index: 10;}
+        .btn a{ width: 39%; height: 0.4rem; color: #FFF; display: block; margin: 0 auto; border-radius: 5px; line-height: 0.4rem; text-align: center; background: #da2f35; font-size: 0.17rem;}
+        
+        .ewm{ width: 100%; height: 52%; border-top: 1px solid #cbcbcb; background: #FFF; text-align: center; padding-bottom: 1rem;}
+        .ewm img{ height: 75%; margin-top: 0.1rem;}
+        .ewm p{ line-height: 0.22rem; font-size: 0.15rem; color: #646464;}
+        
+        .foot{ width: 100%; height: 0.45rem; background: #da2f35; color: #FFF; position: fixed; bottom: 0;}
+        .foot p{ line-height: 0.45rem; font-size: 0.14rem; text-indent: 0.18rem;}
+        .foot a{ width: 0.6rem; height: 0.3rem; position: absolute; right: 0.18rem; top: 0.07rem; line-height: 0.3rem; text-align: center; border: 1px solid #FFF; border-radius: 5px;}
+    </style>
+    
+    <script src="../content/assets/js/biz/jquery-1.12.1.min.js"></script>
+</head>
+
+<body>
+   
+    <header class="head">
+        <a href="../index.html" class="icon-youjiantou"></a>
+        <h3>注册成功</h3>
+    </header>
+    
+    <section class="main">
+        <div class="success">
+            <img src="../content/assets/imgs/complete.png">
+            <p>&nbsp;&nbsp;&nbsp;恭喜您，注册成功！</p>
+        </div>
+        
+        <div class="btn">
+            <a href="../index.html">马上赚钱</a>
+        </div>
+        
+        <div class="ewm" style="display:none">
+            <img id="erm" src="">
+            <p>
+                长按识别图中二维码<br>
+                关注<span id="proName"></span>公众号
+            </p>
+        </div>
+    </section>
+    
+   <!--  <footer class="foot">
+        <p>一键下载，带你赚钱带你飞！</p>
+        <a href="javascript:;">下载</a>
+    </footer> -->
+    
+    <script>
+        $.ajax({
+            type:'get',
+            url:'/user/user/getChannelByDomain.do',
+            dataType:'json',
+            success:function(d){
+                if(d.code==200){
+                    d.data.channelQrCode&&($('#erm').attr('src',d.data.channelQrCode),$('#proName').text(d.data.productName),$('.ewm').show());
+                }
+            }
+        })
+        var $main = $('.main');
+        var $ewm = $('.ewm');
+        var $down = $('.foot').find('a');
+        
+        var height = window.screen.height - 75;
+        $main.css('height',height);
+        
+        
+        
+        var u = navigator.userAgent, 
+        isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,  
+        isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        
+        if(isAndroid){
+            $down.attr('href','http://hystock.oss-cn-qingdao.aliyuncs.com/hy.1.2.0.apk');
+        }
+        if(isiOS){
+            $down.attr('href','https://itunes.apple.com/cn/app/heng-yun-cao-pan-shou/id1119070614?mt=8');
+        }
+        
+        
+        if(isWeiXin()){
+            $ewm.css('height','60%').css('padding-bottom','1rem');
+            if(isiOS){
+                $down.attr('href','http://a.app.qq.com/o/simple.jsp?pkgname=com.jnhyxx.html5');
+            }
+            if(isAndroid){
+                $down.attr('href','http://hystock.oss-cn-qingdao.aliyuncs.com/appv2.apk');
+            }
+        }
+        
+        function isWeiXin(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } 
+    </script>
+</body>
+</html>

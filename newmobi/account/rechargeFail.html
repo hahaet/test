@@ -1,0 +1,47 @@
+<!doctype>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="format-detection"content="telephone=no"/>
+	<title>入金失败</title>
+	<link rel="stylesheet" type="text/css" href="css/account.css">
+</head>
+<body>
+	<div class="wrap">
+		<header class="page-header">
+            <a class="back backTocenter" href="javascript:window.history.back();">&nbsp;</a>
+          	<h3>入金失败</h3>
+		</header>
+		<div class="succ">
+			<img src="img/fail.png" />
+			<p>银联充值失败，请重现尝试</p>
+			<div class="btns clearfix">
+				<a class="torecharge" href="javascript:;">重新尝试</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+var _token=getQueryString('token');
+var u = navigator.userAgent, 
+    app = navigator.appVersion,
+    isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,  
+    isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);  
+$(function() {
+	$('.torecharge').on('tap',function(){
+		window.location.href="recharge.html?token="+_token;
+	});
+	$('.backTocenter').on('tap',function(){
+		window.location.href="accCenter.html?token="+_token;
+	});
+})
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+</script>
+</html>

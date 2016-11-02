@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>期货模拟争霸赛 - 免费！赢万元现金大PK</title>
+    <style>
+        *{ margin:0; padding:0;}
+        li{ list-style:none;}
+        img{ border:none; vertical-align:top;}
+        a{ text-decoration:none; color:inherit;}
+        .clear{zoom:1;}
+        .clear:after{ content:""; display:block; clear:both;}
+        body{ font-family: "黑体"; background: #080808;}
+        
+        .main{ position: relative;}
+        .main img{ width: 100%;}
+        .main .logo{ width: 26%; position: absolute; top: 0; right: 0;}
+        .main .back{ width: 5.6rem; height: 5.6rem; background: url(imgs/icon_back.png) no-repeat; background-size: cover; position: absolute; top: 3rem; left: 4rem;}
+        /*未报名或未登录*/
+        .main .people{ width: 100%; height: 6.2rem; position: absolute; top: 62.1%;}
+        .main .people li{ float: left; width: 6.9%; height: 100%; margin-right: 1.5%; line-height: 6.2rem; font-size: 3.6rem; text-align: center; font-weight: bold;}
+        .main .people li:first-of-type{ margin-left: 28.75%;}
+        .main .join{ width: 52%; height: 8rem; position: absolute; top: 72%; left: 50%; margin-left: -26%;}
+        /*登陆且报名*/
+        .main .bottomC{ width: 100%; position: absolute; top: 53%; color: #c8c8c8; display: none; padding-bottom: 15rem; }
+        .main .bottomC img{ width: 90%; margin: 0 auto; display: block;}
+        .bottomC .p1{ text-align: center; font-size: 3rem; padding-top: 3rem;}
+        .bottomC .pS{ padding-bottom: 4rem;}
+        .bottomC .p1 span{ color: #fea22b;}
+        .bottomC .p2{ width: 90%; margin: 0 auto; text-align: left; font-size: 1.2rem; padding-top: 2rem; line-height: 2rem; color: #999;}
+        .bottomC .p3{ text-align: center; font-size: 1.6rem; padding: 3rem;}
+        .bottomC .ewm{ width: 20rem; height: 20rem; margin: 0 auto;  margin-top: 2rem; background: #FFF; overflow: hidden;}
+        .bottomC .ewm img{ width: 90%; margin: 5%; display: block;}
+        /*底部*/
+        .main .bottom{ width: 100%; height:16rem; background: url(imgs/nav.png) no-repeat; background-size: 100% auto; position: fixed; bottom: 0;}
+        .main .bottom a{ width: 20%; height: 65%; display: block; margin-top: 7%; float: left; line-height: 12.2rem; text-align: center; font-size: 2rem; color: #fff;}
+        .main .bottom a:nth-of-type(1){ color: #eebd30;}
+        .main .bottom a:nth-of-type(3){ margin-left: 20%;}
+        #game{ width: 18%; height: 100%; position: absolute; top: 0; left: 50%; margin-left: -9%;}
+        
+        
+        .mask{ width: 100%; height: 100%; background: rgba(0,0,0,0.8); position: fixed; top: 0; display: none;}
+        .mask .conter{ width: 70%; padding: 5%; background: #000; position: absolute; top: 35%; left: 50%; margin-left: -40%; border: 3px dashed #fea22b; border-radius: 5px; font-size: 3rem;}
+        .mask .conter p{ color: #fea22b; text-align: center;}
+        .mask .conter .btn{ width: 11rem; height: 5rem; line-height: 5rem; text-align: center; margin: 0 auto; padding: 0 3rem; color: #FFF; background: #fea22b; border-radius: 5px; display: block; font-size: 2.6rem; margin-top: 4rem;}
+        .mask .conter img{ width: 8%; position: absolute; top: 0; right: 0; margin-top: -14%;}
+        
+        .success{ width: 100%; height: 100%; background: rgba(0,0,0,0.8); position: fixed; top: 0; display: none;}
+        .success .con{ width: 70%; position: absolute; left: 50%; margin-left: -35%; top: 5%;}
+        .success img{ width: 100%;}
+        .success .btn1{ width: 3rem; height: 5rem; position: absolute; top: -1%; right: 0;}
+        .success a{ width: 40%; height: 5rem; display: block; position: absolute; top: 42%; left: 50%; margin-left: -20%;}
+        .success .phone{ width: 36%; position: absolute; bottom: 11.5%; left: 50%; margin-left: -18%;}
+    </style>
+    
+    <script>
+
+    var scale = 1/window.devicePixelRatio;
+    document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no">');
+    var iWidth = document.documentElement.clientWidth;
+    document.getElementsByTagName('html')[0].style.fontSize = iWidth/64 + 'px';
+
+    </script>
+    <script src="/content/assets/js/biz/jquery-1.12.1.min.js"></script>
+</head>
+
+<body>
+    
+    <div class="main">
+       
+        <a href="javascript:window.history.back()" class="back"></a>
+        
+        <img class="logo" src="imgs/logo.png">
+       
+        <img src="imgs/page.jpg" class="Bg">
+        
+        <ul class="people">
+            <li>0</li>
+            <li>0</li>
+            <li>0</li>
+            <li>0</li>
+            <li>0</li>
+        </ul>
+        
+        <div class="join"></div>
+        
+        <div class="bottomC">
+            <p class="p1">您目前的排名：<span id="paiM">0</span></p>
+            <p class="p1 pS">总交易手数：<span id="paiS">0</span></p>
+            <img src="imgs/pageT.png">
+            <p class="p2">
+                1. 交易手数越多，赢的几率越大，建议每天交易10-30手！<br>
+                2. 可多了解行业资讯、行情价格及行情分析，做好准备，方可减少失误！<br>
+                3. 扫描下方二维码，加入微信战术交流群，与其他选手探讨的同时还有老师不定时喊单，定可在比赛过程中助一臂之力！
+            </p>
+            <div class="ewm">
+                <img src="imgs/wechat.png">
+            </div>
+            <p class="p3">长按保存图片中的二维码</p>
+        </div>
+        
+        <div class="bottom">
+            <a href="javascript:;">首页</a>
+            <a href="Match2.html">活动奖励</a>
+            <a href="Match3.html">游戏规则</a>
+            <a href="Match4.html">活动排名</a>
+            <div id="game"></div>
+        </div>
+        
+        <div class="success">
+            <div class="con">
+                <img src="imgs/popup_succeed.png">
+                <a href="/simulation.html"></a>
+                <div class="btn1"></div>
+                <img src="imgs/wechat.png" class="phone">
+            </div>
+        </div>
+        
+        <img src="imgs/page1.jpg" style="display:none;">
+    </div>
+
+    <script>
+        
+        var $Bg = $('.Bg');
+        var $people = $('.people');
+        var $peoLi = $people.find('li');
+        var $join = $('.join');
+        var $bottomC = $('.bottomC');
+        var $success = $('.success');
+        var $btn1 = $success.find('.btn1');
+        var $paiM = $('#paiM');
+        var $paiS = $('#paiS');
+        
+        
+        var str = window.location.search;
+        var re = /\=/;
+        var num = str.search(re);
+        
+        if(num > 0){
+            baoMing()
+        }
+        
+        if( token('token') != null ){
+            $.ajax({
+                url : '/activity/scoreSimulation/scoreSimulationForSelf',
+                data : {token:token('token')},
+                dataType : 'json',
+                success : function(data){
+                    if(data.code != 1203){
+                        var numB =data.data.rank;
+                        
+                        $people.css('top','47.9%');
+                        $Bg.attr('src','imgs/page1.jpg');
+                        $join.hide();
+                        $bottomC.show();
+                        $paiS.html(data.data.count);
+                        if(numB > 300){
+                            $paiM.html('300名以外');
+                        }
+                        else{
+                            $paiM.html(numB);
+                        }
+                    }
+                }
+            });
+        }
+        
+        $join.on('click',function(){
+            if(token('token') == null){
+                window.location.href = '/user/login.html?callback=/match/Match1.html'
+            }
+            else{
+                baoMing()
+            }
+        });
+        
+        $.ajax({
+            url : '/activity/scoreSimulation/scoreSimulationCouont',
+            data : {},
+            dataType : 'json',
+            success : function(data){
+                var str = data.data.toString();
+                var zero = 5 - str.length;
+                for(var i=0; i < zero; i++){
+                    str = '0' + str;
+                };
+                $peoLi.each(function(i,elem){
+                    $(elem).html(str[i])
+                });
+            }
+        });
+        
+        $btn1.on('click',function(){
+            window.location.reload();
+        });
+        
+        function baoMing(){
+            $.ajax({
+                url : '/activity/scoreSimulation/join',
+                data : { token: token('token')},
+                dataType : 'json',
+                success : function(data){
+                    if(data.code == 1202){
+                        Mask(data.msg,'确定','/simulation.html')
+                    }
+                    else if(data.code == 200){
+                        $success.show();
+                    }
+                }
+            });
+        }
+        
+        function token(key) {
+            return localStorage.getItem(key);
+        }
+    </script>
+    <script src="js/match.js"></script>
+</body>
+
+</html>

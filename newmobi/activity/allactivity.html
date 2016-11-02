@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0" />
+    <title>热门活动</title>
+
+    <meta name="keywords" content="股指期货,期指,黄金,白银,沪深300,中证500,上证50">
+
+    <style>
+    
+        *{ margin:0; padding:0;}
+        li{ list-style:none;}
+        img{ border:none; vertical-align:top;}
+        a{ text-decoration:none; color:inherit;}
+        .clear{zoom:1;}
+        .clear:after{ content:""; display:block; clear:both;}
+
+        body{ font-size:14px; font-family: Microsoft YaHei,Arial,Verdana,Sans-serif; background:#e9f2f8; color: #252525;}
+
+        @font-face {
+            font-family: 'icomoon';
+            src:    url('/content/assets/css/page/fonts/icomoon.eot?gnnhfe');
+            src:    url('/content/assets/css/page/fonts/icomoon.eot?gnnhfe#iefix') format('embedded-opentype'),
+                url('/content/assets/css/page/fonts/icomoon.ttf?gnnhfe') format('truetype'),
+                url('/content/assets/css/page/fonts/icomoon.woff?gnnhfe') format('woff'),
+                url('/content/assets/css/page/fonts/icomoon.svg?gnnhfe#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        [class^="icon-"], [class*=" icon-"] {
+            /* use !important to prevent issues with browser extensions that change fonts */
+            font-family: 'icomoon' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .icon-youjiantou:before {
+            content: "\e91e";
+        }
+
+        .head{ width:100%; height:0.5rem; background:#da2f35; position:fixed; top:0; z-index:100;}
+        .head h3{ width:100%; font-weight:400; font-size:0.16rem; color:#FFF; text-align:center; line-height:0.5rem;}
+        .head a{ width:0.066rem; height:0.12rem; display:block; float:left; position:absolute; left:0.18rem; top:0.17rem; font-size:0.16rem; line-height:0.16rem; color:#FFF;}
+        
+        .main{ margin-top: 0.5rem;}
+        .main ul{ overflow: hidden;}
+        .main li{ background: #FFF; margin-top: 0.1rem;}
+        .main li img{ width: 100%;}
+        .main li .title{ width: 90%; margin: 0 auto; height: 0.5rem; line-height: 0.5rem;}
+        .main li .left{ float: left;}
+        .main li .right{ width: 0.6rem; height: 0.4rem; float: right; text-align: center; color: #FFF; line-height: 0.3rem;}
+        .main li .right.show{ background: url(images/show.png) no-repeat; background-size: contain;}
+        .main li .right.none{ background: url(images/none.png) no-repeat; background-size: contain;}
+        
+        .mask{ width: 100%; height: 100%; background: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; z-index: 10000; display: none;}
+        .mask .content { width: 75%; background: #fff; border-radius: .05rem; position: absolute; top: 50%; margin-top: -20.5%; left: 50%; margin-left: -38%; text-align: center; box-shadow: 0 0 .05rem rgba(0,0,0,.4);}
+        .mask .text{ padding: 0.3rem 0; font-size: 0.16rem;}
+        .mask .action { width: 100%; height: .38rem; line-height: .38rem; border-radius: 0 0 .05rem .05rem; font-size: .15rem; color: #fff; background: #da3333;}
+        
+        #alert1{width:100%;height:100%;background:rgba(0,0,0,0.5);position:fixed;top:0;left:0;z-index:10000; display:none; }
+        #alert1 .input{ width:75%; background:#FFF; position:absolute; top:35%; left:50%; margin-left:-37%; border-radius:5px;}
+        #alert1 .input p{ width:75%; padding:9%; margin-left:5%; text-align:center; font-size:0.14rem; line-height:0.18rem;}
+        #alert1 .input .btn{ width:100%; height:0.35rem; line-height:0.35rem; text-align:center; border-top:1px solid #e5e5e5;}
+        #alert1 .input .btn div{ width:50%; height:100%; float:left; color:#FFF; background:#da3333;}
+        #alert1 .input .btn .btnL{ border-right:1px solid #e5e5e5; box-sizing:border-box; border-radius:0 0 0 0.05rem;}
+        #alert1 .input .btn .btnR{ border-radius:0 0 0.05rem 0;}
+        
+    </style>
+    
+    <script>
+		document.getElementsByTagName('html')[0].style.fontSize = '100px'; 
+	</script>
+    
+    <script src="/content/assets/js/biz/jquery-1.12.1.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- 头部 -->
+<header class="head">
+    <a href="/find.html" class="icon-youjiantou"></a>
+    <h3>热门活动</h3>
+</header>
+<!-- 内容 -->
+<section class="main">
+   
+   <ul>
+       
+       <li>
+           <a id="tuig">
+               <div class="title">
+                   <div class="left">推广赚钱</div>
+                   <div class="right show">进行中</div>
+               </div>
+               <div>
+                   <img src="images/banner2.jpg">
+               </div>
+           </a>
+       </li>
+       <li>
+           <a class="noHref">
+               <div class="title">
+                   <div class="left">期货模拟争霸赛（第二期）</div>
+                   <div class="right none">已结束</div>
+               </div>
+               <div>
+                   <img src="images/banner0.jpg">
+               </div>
+           </a>
+       </li>
+       <li>
+           <a class="noHref">
+               <div class="title">
+                   <div class="left">期货模拟争霸赛（第一期）</div>
+                   <div class="right none">已结束</div>
+               </div>
+               <div>
+                   <img src="images/banner1.jpg">
+               </div>
+           </a>
+       </li>
+   </ul>
+   
+</section>
+
+<!--弹出层begin-->
+<div class="mask">
+    <div class="content">
+        <div class="text">本次活动已结束！</div>
+        <div class="action">
+            <span class="shadow-btn">确定</span>
+        </div>
+    </div>
+</div>
+
+<div id="alert1">
+	<div class="input">
+        <p>您还不是我们的推广员，是否要成为我们的推广员？</p>
+        <div class="btn clear">
+            <div class="btnL">确定</div>
+            <div class="btnR">取消</div>
+    	</div>
+    </div>
+</div>
+
+<script>
+
+    var $noHref = $('.noHref');
+    var $mask = $('.mask');
+    var $btn = $mask.find('.action');
+    
+    $noHref.on('click',function(){
+        $mask.show();
+    });
+    
+    $btn.on('click',function(){
+        $mask.hide();
+    });
+    
+    
+    var Atuig = $('#tuig');
+    Atuig.on('click',tuiguang);
+
+    function tuiguang() {
+        var Aalert1 = $('#alert1');
+        var AbtnL = Aalert1.find('.btnL');
+        var AbtnR = Aalert1.find('.btnR');
+        $.ajax({
+            url: '/user/user/isPro',
+            data: {token: localStorage.getItem('token')},
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                if(data.code == 200) {
+                    if (data.data == 1) {
+                        window.location.href = '/mine/extension.html';
+                    } 
+                    else if (data.data == 0) {
+                        Aalert1.css('display','block');
+                        AbtnL.on('touchstart',function(){
+                            becomePro();
+                        });
+                        AbtnR.on('click',function(){
+                            Aalert1.css('display','none');
+                            return;
+                        });
+                        return false;
+                    }
+                }
+                else{
+                    window.location='/user/login.html';
+                }
+            }
+        });
+    };
+    
+    function becomePro() {
+        $.ajax({
+            url: '/user/user/becomePro',
+            data: {token: localStorage.getItem('token')},
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                window.location.href = '/mine/extension.html';
+            }
+        });
+    }
+</script>
+</body>
+</html>

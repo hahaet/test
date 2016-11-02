@@ -1,0 +1,419 @@
+.main-recharge .alipay .exp img,.main-recharge .quickpay .exp img {
+    width: 1rem
+}
+
+.mod-flow-failure .flow-line,.mod-flow-success .flow-line {
+    background-color: #4471BC
+}
+
+.mod-flow .flows .img-s {
+    background-image: url(../../../imgs/flow/1.png)
+}
+
+.mod-flow .flows .img-p {
+    background-image: url(../../../imgs/flow/2-0.png)
+}
+
+.mod-flow .flows .img-e {
+    background-image: url(../../../imgs/flow/3-0.png)
+}
+
+.mod-flow .flows .label {
+    color: #aaa
+}
+
+.mod-flow-failure .flows .label,.mod-flow-success .flows .label {
+    color: #333
+}
+
+.mod-flow-success .flows .img-p {
+    background-image: url(../../../imgs/flow/2-1.png)
+}
+
+.mod-flow-success .flows .img-e {
+    background-image: url(../../../imgs/flow/3-1.png)
+}
+
+.mod-flow-failure .flows .img-p {
+    background-image: url(../../../imgs/flow/2-1.png)
+}
+
+.mod-flow-failure .flows .img-e {
+    background-image: url(../../../imgs/flow/3-2.png)
+}
+
+.mod-list {
+    margin-top: .1rem
+}
+
+.mod-list>li {
+    height: .4rem;
+    padding: 0;
+    margin-right: .2rem
+}
+
+.mod-list li>label.left {
+    width: 1rem;
+    margin-top: .09rem
+}
+
+.mod-list li>input.left {
+    margin-top: .04rem;
+    border: 0
+}
+
+.mod-list li>span.left {
+    margin-top: .09rem;
+    padding-left: .04rem
+}
+
+.mod-list li>span.right {
+    margin-top: .09rem;
+    margin-right: .2rem
+}
+
+.mod-list>li>.right {
+    float: right
+}
+
+.main-recharge .panel {
+    padding: .25rem
+}
+
+.main-recharge .panel a {
+    display: block
+}
+
+.main-recharge .transfer span.left {
+    margin-top: .04rem
+}
+
+.main-recharge .alipay .exp,.main-recharge .quickpay .exp {
+    margin-top: .02rem
+}
+
+.main-recharge .transfer .exp {
+    margin-top: .04rem
+}
+
+.main-recharge .more {
+    margin: .3rem;
+    text-align: center
+}
+
+.main-recharge .more p {
+    line-height: 1.2
+}
+
+.main-recharge .no-real-name .summary {
+    margin: .1rem .2rem
+}
+
+.main-recharge .no-real-name .link-quickpay {
+    margin: .1rem .2rem;
+    padding: .15rem 0;
+    border-top: .01rem solid #e5e5e5;
+    border-bottom: .01rem solid #e5e5e5
+}
+
+.main-recharge .no-real-name .link-quickpay a {
+    display: block
+}
+
+.main-recharge .box {
+    height: .44rem;
+    margin: .1rem 0;
+    border: .01rem solid #e5e5e5;
+    background-color: #fff;
+    border-radius: .06rem
+}
+
+.main-recharge .box>span.left {
+    margin-left: .2rem;
+    margin-top: .1rem
+}
+
+.main-recharge .box>input.left {
+    margin-left: .2rem;
+    margin-top: .05rem;
+    border: 0
+}
+
+.main-recharge .box>img.right,.main-recharge .box>span.right {
+    margin-right: .1rem;
+    margin-top: .08rem
+}
+
+.main-recharge .card {
+    margin: .1rem .2rem
+}
+
+.main-recharge .card .bank .label {
+    margin-top: .1rem
+}
+
+.main-recharge .no-real-name .amount,.main-recharge .no-real-name .fee {
+    margin: .1rem .2rem
+}
+
+.main-recharge .card .cart-number .input {
+    width: 90%
+}
+
+.main-recharge .no-real-name .amount .input {
+    width: 80%
+}
+
+.main-recharge .action .button,.main-recharge-historys .action a.more {
+    width: 100%
+}
+
+.main-recharge .action {
+    margin: .2rem
+}
+
+.main-recharge-historys li>a {
+    display: block
+}
+
+.main-recharge-historys .amount,.main-recharge-historys .bank,.main-recharge-historys .date,.main-recharge-historys .status {
+    display: block;
+    height: 100%;
+    line-height: 1
+}
+
+.main-recharge-history .mod-list li,.main-recharge-historys .mod-list li {
+    height: .7rem
+}
+
+.main-recharge-historys .bank {
+    margin-top: .15rem
+}
+
+.main-recharge-historys .date {
+    margin-top: .1rem
+}
+
+.main-recharge-historys .amount {
+    margin-top: .18rem
+}
+
+.main-recharge-historys .status {
+    margin-top: .02rem
+}
+
+.main-recharge-historys .action {
+    margin: .1rem .2rem
+}
+
+.main-recharge-history .mod-list div {
+    float: none
+}
+
+.main-recharge-history .mod-list div.left {
+    float: left
+}
+
+.main-recharge-history .mod-list div.right {
+    float: right
+}
+
+.main-recharge-history li>a {
+    display: block
+}
+
+.main-recharge-history .amount,.main-recharge-history .status {
+    display: block;
+    height: 100%;
+    line-height: 1;
+    margin-top: .26rem
+}
+
+.main-recharge-history .title {
+    margin-top: .15rem
+}
+
+.main-recharge-quickpay .summary {
+    padding: .2rem 0;
+    text-align: center;
+    border-bottom: .01rem solid #ddd;
+    background-color: #f8f8f8
+}
+
+.main-recharge-quickpay .amount {
+    width: 61%
+}
+
+.main-recharge-quickpay .bank-account {
+    /*width: 100%*/
+}
+
+.main-recharge-quickpay .input {
+    height: .22rem;
+    line-height: .22rem;
+    padding: 0;
+    border: 0
+}
+
+.main-recharge-quickpay .mobile {
+    width: 80%
+}
+
+.main-recharge-quickpay .smscode {
+    width: 50%
+}
+
+.main-recharge-quickpay .get-smscode {
+    margin-top: -.04rem
+}
+
+.main-recharge-quickpay .action {
+    margin: .2rem
+}
+
+.main-recharge-quickpay .action .button {
+    width: 100%
+}
+
+.main-recharge-quickpay .bank-list .img {
+    line-height: 1.2
+}
+
+.main-recharge-quickpay .name {
+    margin-top: .03rem
+}
+
+.main-recharge-quickpay .recommend {
+    margin-top: .06rem;
+    padding: 0 .04rem;
+    color: #fff;
+    background-color: #f93;
+    border-radius: .03rem
+}
+
+.main-recharge-quickpay .ps {
+    text-align: center
+}
+
+.page-bank-list .mod-list-float li>.left:first-child {
+    width: 22%;
+    text-align: center
+}
+
+.page-bank-list .mod-list-float li>.left:last-child {
+    width: 78%
+}
+
+.main-recharge-alipay .summary {
+    padding: .2rem 0;
+    text-align: center;
+    border-bottom: .01rem solid #ddd;
+    background-color: #f8f8f8
+}
+
+.main-recharge-alipay .alipay-account,.main-recharge-alipay .amount {
+    width: 80%
+}
+
+.main-recharge-alipay .input {
+    height: .22rem;
+    line-height: .22rem;
+    padding: 0;
+    border: 0
+}
+
+.main-recharge-alipay .action {
+    margin: .2rem
+}
+
+.main-recharge-alipay .action .button {
+    width: 100%
+}
+
+.main-recharge-alipay .ps {
+    margin: .3rem;
+    text-align: center
+}
+
+.main-recharge-alipay-goto .content>p {
+    margin: .2rem 0 .2rem .2rem
+}
+
+.main-recharge-alipay-goto .panel {
+    padding-left: .3rem
+}
+
+.main-recharge-alipay-goto .panel .img-alipay {
+    width: .7rem;
+    margin-top: .1rem
+}
+
+.main-recharge-alipay-goto .panel .img-alipay-lc {
+    width: 100%
+}
+
+.main-recharge-alipay-goto .panel input {
+    width: 1.6rem;
+    padding: 0;
+    margin: 0;
+    border: 0
+}
+
+.main-recharge-alipay-goto .panel .pay-done-tip {
+    margin-top: .2rem;
+    text-align: center
+}
+
+.main-recharge-alipay-goto .ps {
+    margin: .3rem;
+    text-align: center
+}
+
+@media all and (max-width: 320px) {
+    .main-recharge-alipay-goto .panel input {
+        width:1rem
+    }
+}
+
+.main-recharge-transfer .ps {
+    margin: .2rem .2rem .25rem
+}
+
+.main-recharge-transfer .mod-list-float li>.left:first-child {
+    width: 15%;
+    text-align: left
+}
+
+.main-recharge-transfer .mod-list-float li>.left:last-child {
+    width: 85%
+}
+
+.main-recharge-transfer .mod-list-float img {
+    margin-top: .05rem
+}
+
+.main-recharge-transfer .account {
+    margin-top: .04rem
+}
+
+.main-recharge-transfer .ps2 {
+    margin: .2rem
+}
+
+.main-recharge-transfer .ps2 .ebill {
+    margin: .3rem 0 0;
+    text-align: center
+}
+
+.main-recharge-transfer .ps3 {
+    text-align: center;
+    margin: .2rem
+}
+
+.main-recharge-transfer .action {
+    margin: .2rem
+}
+
+.main-recharge-transfer .action .button {
+    width: 100%
+}

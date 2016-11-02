@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>资讯直播</title>
+  <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+  <meta name="format-detection" content="telephone=no"/>
+
+  <link rel="stylesheet" href="../content/assets/css/page/home/merge.css?_=16070805"/>
+  <link rel="stylesheet" href="../content/assets/ext/wxcommon.css"/>
+  <link rel="stylesheet" href="../content/assets/ext/index.css?_=16070805"/>
+
+  <script src="../content/assets/js/biz/jquery-1.12.1.min.js"></script>
+  <style type="text/css">
+  ul.alist{padding: 15px;margin-top: 48px;}
+  ul.alist li{border: 1px solid #ededed;padding: 10px;margin-bottom: 15px;}
+  ul.alist li>h3{font-size: 20px;font-weight: bold;color: #333;line-height: 30px;white-space:nowrap;overflow: hidden;text-overflow: ellipsis;}
+  ul.alist li h3 img{width: 100%;display: block;margin-bottom: 10px;}
+  ul.alist li .content{max-height: 72px;overflow: hidden;text-overflow: ellipsis;}
+  ul.alist li .bottom{width: 100%;margin-top: 10px;}
+  ul.alist li .bottom span{color: #9a9797;}
+  .nomsg{text-align: center;}
+   .more {
+      color: #888;
+      border:1px solid #ddd;
+      display: block;
+      width: 80%;
+      height: 38px;
+      line-height: 36px;
+      padding: 0 10px;
+      text-align: center;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body class="page-news">
+    <div class="hbar">
+      <div class="content">
+        <h3>资讯</h3>
+         <div class="arrow">
+          <a href="javascript:window.history.back()" class="icon-youjiantou" style="color:#fff"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="body">
+      <nav class="news-nav news-zhibo">
+        <span class="zhibo"><a href="info.html"><i>资讯直播</i></a></span>
+        <span class="yuanyou"><a href="analyse.html"><i>行情分析</i></a></span>
+        <span class="jinyin on"><i>行业资讯</i></span>
+      </nav>
+      <div>
+        <ul class="alist" id="listContent">
+        	
+        </ul>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+     var pageNo=0;
+    $(function(){
+       getNews(pageNo);
+        $('body').on('click','.more',function(){
+            pageNo++;
+            getNews(pageNo);
+        });
+    });
+    function getNews(p){
+      $.ajax({
+        type:'get',
+        url:'/user/news/findNewsList.do',
+        data:{type:3,offset:p*20,size:20},
+        dataType:'json',
+        success:function(d) {
+          var _html="";
+          if(d.data.length>0){
+            for(var i=0;i<d.data.length;i++){
+                  var h=d.data[i].cover?'<h3><img src="'+d.data[i].cover+'"/></h3>':d.data[i].title?'<h3>'+d.data[i].title+'</h3>':'';
+                _html+='<li><a href="newsDtl.html?id='+d.data[i].id+'">'+h+'<div class="cont">'+d.data[i].summary+'</div><div class="bottom clearfix"><div class="left"><span class="time">'+d.data[i].createTime+'</span></div></div></a></li>';//<div class="right"><span>评论（'+d.data[i].cmtCount+'）</span><span>阅读（'+d.data[i].readCount+'）</span></div>
+                
+            }
+            if(d.data.length>=10&&$(".more").length<=0){
+              $('#listContent').parent().append('<a href="javascript:void(0)" class="more">查看更多</a>');
+            }
+          }else{
+            $('.more').remove();
+            _html="<p class='nomsg'>暂无资讯</p>";
+          }
+         p>1 ?$("#listContent").append(_html):$("#listContent").html(_html);
+        }
+      })
+    }
+   
+    	
+    </script>
+</body>
+</html>  

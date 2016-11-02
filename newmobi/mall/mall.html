@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0" />
+    <title>金币商城</title>
+
+    <meta name="keywords" content="股指期货,期指,黄金,白银,沪深300,中证500,上证50">
+
+    <link rel="stylesheet" href="/content/assets/css/page/mall/merge.css?_=20161102">
+    
+    <script>
+		document.getElementsByTagName('html')[0].style.fontSize = '100px'; 
+	</script>
+    
+    <script src="/content/assets/js/biz/jquery-1.12.1.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- 头部 -->
+<header class="head" id="head">
+	 <a href="/index.html" class="icon-youjiantou left"></a>
+    <h3>金币商城</h3>
+    <a class="right" href="mall_rule.html">规则</a>
+</header>
+<!-- 内容 -->
+<section class="main">
+
+    <div class="top">
+        <p class="user">可用金币：<span class="icon-icon_coin"></span><span id="gold">0</span></p>
+        <p class="cold">冻结金币：<span class="icon-icon_coin"></span><span id="buyGold">0</span></p>
+        <a href="/simulation.html" class="btn">赚金币</a>
+    </div>
+    
+    <div class="money">
+        <ul>
+            <li>
+                <a href="javascript:;" id="btnA">
+                    <span class="icon-getcoin"></span>
+                    <p>免费领金币</p>
+                </a>
+            </li>
+            <li>
+                <a href="mall_exchange.html">
+                    <span class="icon-icon_exchange"></span>
+                    <p>我的兑换</p>
+                </a>
+            </li>
+            <li>
+                <a href="/account/detail.html?type=2">
+                    <span class="icon-icon_list2"></span>
+                    <p>金币明细</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="conMain">
+            <p class="p1">常规兑换</p>
+            
+            <!--<ul class="prize clear">
+                <li>
+                    <div class="prizeCentent">
+                        <img src="imgs/11.jpg">
+                        <div>
+                            <p class="text1">50元话费</p>
+                            <p class="text2"><span class="icon-icon_coin"></span>5000</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="prizeCentent">
+                        <img src="imgs/11.jpg">
+                        <div>
+                            <p class="text1">50元话费</p>
+                            <p class="text2"><span class="icon-icon_coin"></span>5000</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>-->
+            
+        </div>
+        
+        <div class="Most">加载更多</div>
+    </div>
+    
+</section>
+
+<div id="alert1">
+	<div class="input">
+        <p></p>
+        <div class="btn clear">
+            <div class="btnL">确定</div>
+            <div class="btnR">取消</div>
+    	</div>
+    </div>
+</div>
+
+<div id="alert2">
+	<div class="input">
+        <p>您已在其他设备登录请确认</p>
+        <div class="btn clear">
+            <a class="btnL" href="/user/login.html">确定</a>
+    	</div>
+    </div>
+</div>
+
+<script src="../content/assets/js/biz/nohead.js"></script>
+<script>
+    
+    var $gold = $('#gold'),
+    $buyGold = $('#buyGold'),
+    $conMain = $('.conMain'),
+    $Most = $('.Most'),
+    arr0 = [],
+    arr1 = [],
+    num = 1;
+    
+    $Most.on('click',function(){
+        num++;
+        toMost(num);
+    });
+    
+    
+    
+    $.ajax({
+        url: '/user/finance/findMain.do',
+        data: {},
+        dataType: 'json',
+        type: 'post',
+        success: function (data) {
+            if(data.code == 200){
+                $gold.html(data.data.scoreUsable);
+                $buyGold.html(data.data.marginScore + data.data.scoreFrozen);
+            }
+            else{
+                $('#alert2').show();
+            }
+        }
+    });
+    
+    toMost()
+    
+    function toMost(p){
+        $.ajax({
+            url: '/user/shopping/findAll.do',
+            data: {
+                page : p || 0,
+                pageSize : 20,
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                if(data.code == 200){
+                    var d = data.data.data;
+                    if(d.length < 20){
+                        $Most.hide();
+                    }
+                    
+                    var num = Math.ceil(d.length / 2);
+
+                    for(var i=0;i<num;i++){  //创建ul
+                        var $ul = $('<ul class="prize clear"></ul>');
+                        $conMain.append($ul)
+                        arr0.push($ul);
+                    }
+
+                    for(var i=0; i<d.length;i++){ //创建li
+                        var $li = $('<li><div class="prizeCentent" thisId="'+d[i].id+'"><img src="'+d[i].image+'"><div><p class="text1">'+d[i].name+'</p><p class="text2"><span class="icon-icon_coin"></span>'+d[i].price+'</p></div></div></li>');
+                        arr1.push($li);
+
+                        var $prizeCentent = $li.find('.prizeCentent');
+
+                        $prizeCentent.on('click',function(){
+                            window.location.href = '/mall/mall_details.html?id='+$(this).attr('thisid');
+                        });
+                    }
+
+
+
+                    for(var i=0;i<arr0.length;i++){
+                        for(var j=0;j<arr1.length;j++){
+                            arr0[i].append(arr1[i*2+j]);
+                        }
+                    }
+                    
+                    
+                }
+                else if(data.code == 41022){
+                    $('#alert2').show();
+                }
+            }
+        });
+    }
+    
+    $('#btnA').on('click',function(){
+        var numJ = $('#gold').html();
+        
+        $.ajax({
+            url: '/user/shopping/getScore.do',
+            data: { scoreUsable : numJ},
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var sMask = $('#alert2');
+                var sP = sMask.find('p');
+                var sA = sMask.find('a');
+                sP.html(data.msg);
+                sA.attr('href','javascript:;');
+                sMask.show();
+                sA.on('click',function(){
+                    window.location.href = 'mall.html';
+                });
+            }
+        });
+    });
+    
+    function mask(str,fn){
+        var $mask = $('#alert1');
+        var $text = $mask.find('p');
+        var $sure = $mask.find('.btnL');
+        var $nosure = $mask.find('.btnR');
+        
+        $text.html(str)
+        
+        $mask.show();
+        
+        $sure.on('click',function(){
+            fn();
+            $mask.hide();
+        });
+        
+        $nosure.on('click',function(){
+            $mask.hide();
+            window.location.href = '/index.html'
+        });
+        
+    }
+</script>
+
+</body>
+</html>

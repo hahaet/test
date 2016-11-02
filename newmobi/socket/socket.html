@@ -1,0 +1,41 @@
+<!doctype>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>socket</title>
+</head>
+<body>
+<script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+<script type="text/javascript">
+	 var websocket;
+        if ('WebSocket' in window) {
+            websocket = new WebSocket("ws://139.129.221.2:3009/quota/getQuotaByCode.do");
+        } else if ('MozWebSocket' in window) {
+            websocket = new MozWebSocket("ws://echo");
+        } else {
+            websocket = new SockJS("http://127.0.0.1:8080/tunnel/socket/sockJs");
+        }
+
+        websocket.onopen = function (evnt) {
+            console.log("链接服务器成功!")
+        };
+        websocket.onmessage = function (evnt) {
+            console.log(evnt.data);
+        };
+        websocket.onerror = function (evnt) {
+        };
+        websocket.onclose = function (evnt) {
+            console.log("与服务器断开了链接!")
+        }
+       
+        function send(message) {
+            if (websocket != null) {
+                websocket.send(message);
+            } else {
+                alert('未与服务器链接.');
+            }
+        }
+        send('GC1612')
+</script>
+</body>
+</html>

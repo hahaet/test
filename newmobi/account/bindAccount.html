@@ -1,0 +1,158 @@
+<!doctype>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="format-detection"content="telephone=no"/>
+	<title>绑定实盘账户</title>
+	<link rel="stylesheet" type="text/css" href="css/account.css?20160315">
+</head>
+<body>
+	<div class="wrap gray">
+		<header class="page-header">
+            <a class="back backTolist" href="javascript:window.history.back();">&nbsp;</a>
+          	<h3>绑定实盘账户</h3>
+		</header>
+		<div class="item cainiu">
+			<p>平台账户</p>
+			<div class="item_account">
+				<img src="img/b_1.png">
+				<div class="item_intro">
+					<h2>平台账户</h2>
+					<span>品种丰富，波动剧烈</span>
+				</div>
+				<a class="open openCn" href="javascript:;" data-url="openAccount.html">开户</a>
+			</div>
+		</div>
+		<div class="item fangz">
+			<p>期货账户</p>
+			<div class="item_account" >
+				<img src="img/b_3.png">
+				<div class="item_intro">
+					<h2>方正中期期货</h2>
+					<span>7到15天人工审核</span>
+				</div>
+				<a class="open openFangz" href="javascript:;" data-url="goto://fangZfutures">开户</a>
+				<a class="open loginFangz" style="display:none;" href="javascript:;" data-url="goto://fangZfutures">登录</a>
+			</div>
+			<div class="item_account top_border" style="display:none;">
+				<img src="img/b_2.png">
+				<div class="item_intro">
+					<h2>南华期货</h2>
+					<span>低手续费，开户迅速</span>
+				</div>
+				<a class="open" href="javascript:;">立即开户</a>
+
+			</div>
+		</div>
+		
+		<div class="item cost">
+			<p>现货账户</p>
+			<div class="item_account">
+				<img src="img/b_4.png">
+				<div class="item_intro">
+					<h2>南方稀贵金属交易所</h2>
+					<span>品种丰富，无隔夜费</span>
+				</div>
+				<a class="open openCost" href="javascript:;" data-url="goto://XHPage">开户</a>
+				<a class="open loginCost" href="javascript:;" data-url="goto://XHPage">登录</a>
+			</div>
+		</div>
+		<div class="item orter">
+			<p>A股</p>
+			<div class="item_account">
+				<img src="img/b_5.png">
+				<div class="item_intro">
+					<h2>中信证券</h2>
+					<span>不支持线上开户</span>
+				</div>
+				<a class="open orterkh" href="ologin.html?type=1" >登录</a>
+			</div>
+		</div>
+		<div class="item orter">
+			<p>美股、港股</p>
+			<!--<div class="item_account">
+				<img src="img/b_6.png">
+				<div class="item_intro">
+					<h2>国信证券</h2>
+					<span>7到15天人工审核</span>
+				</div>
+				<a class="open orterkh" href="ologin.html?type=2" >登录</a>
+			</div>-->
+			<div class="item_account">
+				<img src="img/b_7.png">
+				<div class="item_intro">
+					<h2>盈透证券</h2>
+					<span>低手续费，开户迅速</span>
+				</div>
+				<a class="open orterkh" href="ologin.html?type=3">登录</a>
+			</div>
+		</div>
+		<div class="blank"></div>
+	</div>
+</body>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+var _token=getQueryString('token');
+var u = navigator.userAgent, 
+    app = navigator.appVersion,
+    isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,  
+    isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
+$(function(){
+	openInfo();
+	$('.openCn').on('tap',function(){
+		var _url=$(this).attr('data-url');
+		window.location.href=_url+"?token="+_token;
+	});
+	$('.openFangz').on('tap',function(){
+		if(isiOS){
+			window.location.href="goto://fangZfutures";
+		}else{
+			window.AppJs.openNewWebActivityNoHost('/activity/openAccount.html?token='+_token,true);
+		}
+	});
+	$('.openCost').on('tap',function(){
+		if(isiOS){
+			window.location.href="goto://XHPage";
+		}else{
+			 window.AppJs.openCashCommodity();
+		}
+	});
+	$('.backTolist').on('tap',function(){
+		if(isiOS){
+			window.location.href="goBack://last";
+		}else{
+			 window.AppJs.finishActivity();
+		}
+	});
+});
+//获取开户信息
+function openInfo(){
+	$.ajax({
+        type:'post',
+        url:'../user/account/getAccountsStatus',
+        data:{token:_token},
+        dataType:'json',
+        success:function(d){
+            if(d.code==200){
+            	for(o in d.data){
+            		if(d.data[o]==1){
+            			$("."+o).hide();
+            		}
+            	}
+            }
+        },
+        error:function(e){
+            //系统出错
+        },
+    })
+}
+//获取url参数
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+</script>
+</html>

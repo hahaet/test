@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0" />
+    <title>金币商城 - 购买金币</title>
+
+    <meta name="keywords" content="股指期货,期指,黄金,白银,沪深300,中证500,上证50">
+
+    <link rel="stylesheet" href="/content/assets/css/page/mall/purchase.css?_=201610330">
+    <style>
+        .content .gray{
+            color: #808080;
+            border: 1px solid #808080;
+        }
+    </style>
+    <script>
+		document.getElementsByTagName('html')[0].style.fontSize = '100px'; 
+	</script>
+    
+    <script src="/content/assets/js/biz/jquery-1.12.1.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- 头部 -->
+<header class="head" id="head">
+	 <a href="/mall/mall.html" class="icon-youjiantou"></a>
+    <h3>购买金币</h3>
+</header>
+<!-- 内容 -->
+<section class="main">
+   
+    <div class="top clear">
+        <div class="left topC">现金余额：<span id="money">0</span>元</div>
+        <a class="right" href="/account/banks.html">充值</a>
+    </div>
+    
+    <div class="top clear">
+       
+        <div class="left topC">金币余额：<span id="jinbI">0</span></div>
+        
+        <div class="right1 topC">今日可购买金币：<span id="nowMoney" class="font">0</span></div>
+        
+    </div>
+    
+    <ul class="content">
+       
+    </ul>
+    <div class="textB">购买过程中遇到问题，请联系首页客服</div>
+</section>
+    
+<div id="alert1">
+	<div class="input">
+        <p></p>
+        <div class="btn clear">
+            <div class="btnR">取消</div>
+            <div class="btnL">确定</div>
+        </div>
+    </div>
+</div>
+
+<div id="alert2">
+	<div class="input">
+        <p>您已在其他设备登录请确认</p>
+        <div class="btn clear">
+            <a class="btnL" href="/user/login.html">确定</a>
+    	</div>
+    </div>
+</div>
+<script src="../content/assets/js/biz/nohead.js"></script>
+<script>
+    
+var $money = $('#money'),
+    $jinbI = $('#jinbI'),
+    num = 0;
+
+$('.content').on('click','.btnBuy',function() {
+    var num0 = $money.html(),
+        num1 = $(this).attr('money'),
+        num2 = $(this).attr('jinbi');
+    if ((num0 - num1) < 0) {
+        mask('您的资金余额不足请先充值', function() {
+            window.location.href = '/account/banks.html';
+        });
+    } else {
+        if ((num - num2) >= 0) {
+            mask('确定用' + num1 + '元购买' + num2 + '金币？', function() {
+                $.ajax({
+                    url: '/user/shopping/exchangeScore.do',
+                    data: {
+                        money: num1
+                    },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            mask('购买成功', function() {
+                                window.location.href = '/mall/mall_purchase.html';
+                            });
+                        } else {
+                            mask(data.msg);
+                        }
+
+                    }
+                });
+            });
+        }
+
+    }
+});
+
+$.ajax({
+    url: '/user/finance/findMain.do',
+    data: {},
+    dataType: 'json',
+    type: 'post',
+    success: function(data) {
+        if (data.code == 200) {
+            $money.html(data.data.moneyUsable);
+            $jinbI.html(data.data.scoreUsable);
+        }
+    }
+});
+
+$.ajax({
+    url: '/user/shopping/findExchangeAbleScore.do',
+    data: {},
+    dataType: 'json',
+    type: 'post',
+    success: function(data) {
+        if (data.code == 200) {
+            num = data.data;
+            $('#nowMoney').html(num);
+            createLi(num)
+        }
+    }
+});
+
+function createLi(n){
+    $.ajax({
+        url: '/user/shopping/findExchangeRate.do',
+        data: {},
+        dataType: 'json',
+        type: 'post',
+        success: function(data) {
+            if (data.code == 200) {
+                var p = data.data,l='',arr=[1,5,10,20,30,50,100];
+                for(var i=0;i<7;i++){
+                    var b = arr[i]*p,c = b>n?'gray':'';
+                    l+='<li><div class="contentU clear"> <div class="left"><span class="icon-icon_coin"></span>'+b+'</div><div class="right btnBuy '+c+'" money="'+arr[i]+'" jinbi="'+b+'">￥'+arr[i]+'</div></div></li>';
+                }
+               $('.content').html(l);
+            }
+        }
+    });
+}
+function mask(str, fn) {
+    var $mask = $('<div id="alert1"><div class="input"><p></p><div class="btn clear"><div class="btnL">取消</div><div class="btnR">确定</div></div></div></div>');
+    var $text = $mask.find('p');
+    var $sure = $mask.find('.btnL');
+    var $nosure = $mask.find('.btnR');
+    $text.html(str)
+
+    $('body').append($mask);
+    $mask.show();
+    $nosure.on('click', function() {
+        if(fn)fn();
+        $mask.remove();
+    });
+    $sure.on('click', function() {
+        $mask.remove();
+    });
+}
+</script>
+</body>
+</html>

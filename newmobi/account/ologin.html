@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="配资炒股,平台炒股,平台,炒股APP,期货配资,股票配资,黄金白银,白银配资,融资杠杆,配资APP">
+    <meta name="description" content="南交所登录">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="/activity/stylesheets/style.css">
+    <script>
+    	(function(b){
+    		var a={};
+    		a.Html=b.getElementsByTagName("html")[0];
+    		a.widthProportion=function(){
+    			var c=(b.body&&b.body.clientWidth||a.Html.offsetWidth)/640;
+    			return c>1?1:c
+    		};
+    		a.changePage=function(){
+    			a.Html.setAttribute("style","font-size:"+a.widthProportion()*100+"px")
+    		};
+    		a.changePage();
+    		setInterval(a.changePage,100)
+    	})(document);
+    </script>
+    <style type="text/css">
+        .content{padding-top: 48px;}
+        .login{
+            border-bottom:1px solid #e2e2e2;
+            border-top:1px solid #e2e2e2;
+            margin-bottom: 0.5rem;
+        }
+        .group{
+            width: 80%;
+            margin:0 auto;
+            text-align: left;
+            height:0.85rem;
+            position: relative;
+
+        }
+        .group input{
+            width: 75%;
+            padding-right: 0;
+        }
+        .line{
+            height: 1px;
+            overflow: hidden;
+            border-bottom:1px solid #e2e2e2;
+        }
+        .tip{
+            position:absolute;
+            top: 0.3rem;
+            right: 0;
+            width: 0.26rem;
+            height: 0.26rem;
+            background:url(/activity/images/register/que.png);
+            background-size: cover;
+            display: inline-block;
+        }
+        img{
+            width: 60%;
+            margin-bottom: 0.4rem;
+            margin-top: 0.4rem;
+        }
+        .buttonWrt{
+            width:90%;
+            color: #000000;
+            height:0.65rem;
+            margin:0.15rem auto;
+            text-align:center;
+            -moz-border-radius: 0.07rem;
+            -webkit-border-radius: 0.07rem;
+            border-radius: 0.07rem;
+            background:#FFFFFF;
+            border:1px solid #e2e2e2;
+            display:block;
+        }
+        .tradeIdList{
+            width: 75%;
+            background: #fff;
+            position: absolute;
+            top: 0.7rem;
+            left: 1rem;
+            z-index: 999;
+            border: 1px solid #dbdbdb;
+            max-height: 1.5rem;
+            overflow: auto;
+        }
+        .tradeIdList li{
+            line-height: 0.5rem;
+            padding-left: 0.5rem;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        .tradeIdList li img{
+            width: 0.26rem;
+            height: 0.26rem;
+            padding: 0;
+            margin: 0.13rem;
+        }
+        /*.tradeIdList li::after{
+            content: 'X';
+            color:gray;
+            width: 0.3rem;
+            height: 0.26rem;
+            border: 1px solid grey;
+            border-radius: 0.26rem;
+            padding: 0.1rem;
+            padding: 0rem 0rem 0.2rem 0.1rem;
+            position: absolute;
+            right: 0.5rem;
+            display: inline-block;
+
+   
+        }*/
+        .tradeIdList li:last-child{
+             border-bottom: none;
+        }
+        .zp-dialog p{
+            font-size: 0.24rem;
+        }
+        .jys_name{
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+        .page-header{
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            width: 100%;
+            height: 48px;
+            color: #fff;
+            background-color: #fa4200;
+        }
+
+        .page-header h3,.acc_header_nav h3 {
+            font-size: 16px;
+            line-height: 48px;
+            text-align: center;
+            position: relative;
+        }
+
+
+        .blank{
+            width: 100%;
+            height: 40px;
+            background: #ededed;
+        }
+        .page-header a, .acc_header_nav a{
+            color: #fff;
+            position: absolute;
+            top: -2px;
+            left: 10px;
+            z-index: 10001;
+            display: block;
+            width: 25px;
+            height: 50px;
+            background: url(img/back.png) center no-repeat;
+            background-size: 50% 50%;
+        }
+        .logo{width: 120px;}
+        .note{text-align: center;color: #999;font-size: 12px;line-height: 15px;}
+    </style>
+</head>
+<body>
+	<div class="content">
+        <header class="page-header">
+            <a class="back" href="javascript:window.history.back();">&nbsp;</a>
+            <h3>交易所信息</h3>
+        </header>
+		<img class="logo" src="">
+        <h3 class="jys_name"></h3>
+		<div class="login">
+            <div class="group">
+                <label for="">交易账号</label>
+                <input type="text" id="j_tradeId" value="" placeholder="请输入交易账号">
+                <ul class="tradeIdList" style="display:none">
+                </ul>
+            </div>
+            <div class="line"></div>
+            <div class="group">
+                <label for="">交易密码</label>
+                <input type="password" placeholder="请输入交易密码"
+                id="j_loginPwd">
+            </div>      
+        </div>
+		<input type="button" class="buttonRed" value="登录" id="login">   
+        <p class="note">申请交易所帐号需要7到15天人工审核时间</p>
+        <p class="note">如有疑问请联系客服：400 - 6666 - 801</p>
+	</div>
+ 
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript">
+        var _type=parseInt(getQueryString('type'));
+        var _img,_name;
+        switch(_type){
+            case 1:
+                _img='img/o_'+_type+'.png';
+                _name="中信证券";
+            break;
+            case 2:
+                _img='img/o_'+_type+'.png';
+                _name="国信证券";
+            break;
+            case 3:
+                _img='img/o_'+_type+'.png';
+                _name="盈透证券";
+            break;
+        }
+        $('.logo').attr('src',_img);
+        $('.jys_name').html(_name);
+        $('.back').on('tap',function(){
+            window.history.back();
+        });
+        //获取url参数
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="format-detection"content="telephone=no"/>
+    <title>入金</title>
+    <link rel="stylesheet" type="text/css" href="css/account.css">
+    <link rel="stylesheet" href="../content/assets/css/page/user/merge.css">
+    <style>
+        .shadeWrap{ position:fixed; width:100%; height:100%; top:0; left:0; z-index:99; background:rgba(0,0,0,.3); font-size:.16rem;}
+        .shadeWrap .content{ width: 75%; background: #fff; border-radius: .05rem; position: absolute; top: 50%; margin-top: -20.5%; left: 50%; margin-left: -38%; text-align: center;box-shadow: 0 0 .05rem rgba(0,0,0,.4); }
+        .shadeWrap .main{padding: .25rem; border-bottom: 1px solid #eee;}
+        .shadeWrap .action{ width:100%; height:.38rem; line-height: .38rem; border-radius: 0 0 .05rem .05rem;font-size:.16rem; color:#fff;background:#da3333;}
+        .anQ{ color: #a5a4a4; text-align: center; width: 100%; display: block; color: #da2f34;}
+        .anQ img{ width: 0.35rem; margin-right: 0.1rem;}
+        .bottom{ text-align: center; width: 100%; font-size: 0.11rem; color: #999; margin-top: -1.2rem;}
+        .weiXin{ position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 10000; background: rgba(0,0,0,.8); display: none;}
+        .weiXin img{ width: 90%; position: absolute; top: 0.1rem; right: 0.2rem;}
+    </style>
+</head>
+<body>
+<div class="wrap gray">
+    <header class="page-header">
+        <a class="back" href="javascript:window.history.back();">&nbsp;</a>
+        <h3>充值</h3>
+    </header>
+    <section class="content ">
+        <div class="pay-money p1520 mtb10">
+            <span class="pay-title">充值金额</span><input type="tel" id="j_tradeId" name="money" placeholder="充值金额>=50元">
+        </div>
+        <div class="pay-type p20">
+            <p>请选择支付方式</p>
+            <div class="paycard" pay-type="card" id="bank" style="display:none">
+                <img class="logo" src="../content/assets/imgs/yinlian.png" alt="">
+                <img class="tuijian" src="../content/assets/imgs/tuijian.png" alt="">
+                <p class="pay-name">银行卡支付</p>
+                <p class="pay-tips">无需开通网银</p>
+
+            </div>
+             <div class="paycard wchat" pay-type="wchat" id="wechat" style="display:none">
+                <img class="logo" style="top:.12rem; left:0.2rem; width:0.4rem;" src="../content/assets/imgs/wchat.png" alt="">
+                <p class="pay-name">微信支付</p>
+                <p class="pay-tips">手机支付，免手续费</p>
+               
+            </div>
+            <div class="paycard" pay-type="zhifubao" id="alipay" style="display:none">
+                <img class="logo zhifubao" src="../content/assets/imgs/zhifubao.png" alt="">
+                <img class="tuijian" src="../content/assets/imgs/tuijian.png" alt="">
+                <p class="pay-name">支付宝</p>
+                <p class="pay-tips">手机支付，即时到账</p>
+               
+            </div>
+            
+            <p class="login-btn Next">下一步</p>
+            
+            <span class="anQ"><img src="../content/assets/imgs/pingan.png">账户资金安全由平安财险承保</span>
+            
+        </div>
+        
+    </section>
+    
+    <p class="bottom">资金充提采用银联、支付宝、微信三种支付方式<br>三重监管，让您的资金更安全！</p>
+</div>
+<!--弹出层begin-->
+<div class="shadeWrap" style="display:none">
+    <div class="content">
+        <div class="main"></div>
+        <div class="action">
+            <span class="shadow-btn" href="javascript:void(0);">确定</span>
+        </div>
+    </div>
+</div>
+
+<div class="weiXin">
+    <img src="img/andriod_zy.png">
+</div>
+<!--弹出层end-->
+</body>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+var onoff = true;
+var u = navigator.userAgent,
+    isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+    isiOS = !! u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
+function dialogBox(a, b) {
+    var c = $(".shadeWrap");
+    var d = $(".content");
+    c.find(".main").text(a);
+    c.css("display", "block");
+    $(".shadeWrap .action").on("click", function() {
+        c.css("display", "none");
+        if (b) b()
+    })
+}
+function tobank() {
+    var a = $('#j_tradeId').val();
+    if (isValid(a)) {
+        window.location.href = '/user/finance/deposit.do?money=' + a
+    }
+}
+function zhifubao() {
+    var a = $('#j_tradeId').val();
+    var p = isAndroid ? 1 : 0
+    if (isWeixn()) {
+        var b = $('.weiXin').find('img');
+        isAndroid ? b.attr('src', 'img/andriod_zy.png') : b.attr('src', 'img/iOS_zy.png');
+        $('.weiXin').show();
+        return false
+    }
+    if (isValid(a)) {
+        window.location.href = '/user/finance/depositByAlipay.do?money=' + a + '&platform=' + p;
+    }
+}
+function towchat() {
+    var a = $('#j_tradeId').val();
+    if (isValid(a)) {
+        window.location.href = '/user/finance/depositByWeChat.do?money=' + a;
+    }
+}
+function isValid(a) {
+    a ? /^\d+$/.test(a) ? !0 : dialogBox("充值金额请输入整数") : dialogBox("充值金额不能为空");
+    if ((a ? /^\d+$/.test(a) ? !0 : false : false) && !(parseInt(a) >= 50)) {
+        dialogBox("充值金额应大于50元")
+    }
+    return ((a ? /^\d+$/.test(a) ? !0 : false : false) && parseInt(a) >= 50)
+}
+function isWeixn() {
+    var a = navigator.userAgent.toLowerCase();
+    return a.match(/MicroMessenger/i) == "micromessenger"
+}
+$(function() {
+    var arr = ['zwp0.zlcfzx.com','zwpa.zlcfzx.com','zwpu.zlcfzx.com','zwpn.zlcfzx.com','zwpy.zlcfzx.com','zwpd.zlcfzx.com','czwp.zlcfzx.com'],
+        w = window.location.host;
+    if(arr.indexOf(w)>-1){
+        $('#wechat').remove();
+    }
+    $(".login-btn").on("click", function() {
+        var a = $("#j_tradeId").val();
+        if (!isValid(a)) {
+            return false
+        }
+        if ($(".redborder").length <= 0) {
+            dialogBox("支付方式不能为空");
+            return false
+        }
+        var b = $(".redborder").attr('pay-type');
+        if (onoff) {
+            onoff = false;
+            switch (b) {
+                case 'card':
+                    tobank();
+                    break;
+                case 'zhifubao':
+                    zhifubao();
+                    break;
+                case 'wchat':
+                    towchat();
+                break
+            }
+            onoff = true
+        }
+    });
+    $.ajax({
+        url: '/user/user/showAuthentication.do',
+        type: 'post',
+        dataType: 'json',
+        data: {},
+        success: function(d) {
+            if (!d.data.cardState) {
+                dialogBox("您还未绑定银行卡，请先绑定银行卡", function() {
+                    window.location.href = "/account/bindBank.html?backurl=2"
+                })
+            }
+        },
+        error: function() {
+            dialogBox("请求出错")
+        }
+    });
+    $.ajax({
+        url: '/user/finance/findDepositType.do',
+        type: 'post',
+        dataType: 'json',
+        data: {},
+        success: function(d) {
+            if (d.code == 200) {
+                for (var o in d.data) {
+                    if (d.data[o]) {
+                        $('#' + o).show();
+                        !isWeixn() && $('#wechat').hide();
+                        if(isWeixn()){$('#alipay').hide()}
+                    }
+                }
+            }
+        },
+        error: function() {
+            dialogBox("请求出错")
+        }
+    });
+    $(".paycard").on("click", function() {
+        $(this).addClass("redborder").siblings("div.paycard").removeClass("redborder")
+    });
+    $('.weiXin').on('click', function() {
+        $(this).hide();
+        return false
+    })
+});
+</script>
+</html>
