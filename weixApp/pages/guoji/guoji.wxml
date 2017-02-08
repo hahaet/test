@@ -1,0 +1,4 @@
+<view class="section">
+    <text>这是国际页面 </text>
+    <text>该品种id是{{varietyId}}</text>
+</view>
